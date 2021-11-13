@@ -1,0 +1,1 @@
+third-party: Aqui ficam os arquivos de configuração/conexão com serviços externos, como APIs do GitHub ou Google, por exemplo.
