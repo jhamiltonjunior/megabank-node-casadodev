@@ -1,0 +1,8 @@
+POST http://localhost:5000/client
+Content-Type: application/json
+
+
+{
+  "name": "Hamilton",
+  "CPF": 123456789
+}

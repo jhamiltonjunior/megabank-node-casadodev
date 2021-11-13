@@ -13,7 +13,7 @@
 
 #
 
-## Requsitos funcionais
+## Requisitos funcionais
 
 - [ ] Depósito
 - [ ] Saque

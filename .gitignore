@@ -3,6 +3,11 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=node
 
 ### Node ###
+# frontend
+dist
+frontend
+view
+
 # txt
 gcloud.txt
 
@@ -92,7 +97,6 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/
