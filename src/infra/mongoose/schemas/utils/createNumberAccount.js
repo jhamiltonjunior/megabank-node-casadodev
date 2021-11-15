@@ -1,5 +1,17 @@
-const createNumber = () => {
-  return 13
+const generateNumber = (min = 1000, max = 9999) => {
+  const number = []
+
+  let index = 0
+
+  for (index; index < 4; index++) {
+    const randNumber = Math.floor((Math.random() * max) + min)
+
+    number.push(randNumber)
+  }
+
+  const numberCreated = number.join(' ')
+
+  return numberCreated
 }
 
-module.exports = createNumber
+module.exports = { generateNumber }

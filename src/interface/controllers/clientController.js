@@ -2,7 +2,7 @@ const Client = require('../../infra/mongoose/schemas/clientSchema')
 
 exports.client = async (req, res) => {
   try {
-    const { email, cpf, numberAccount } = req.body
+    const { email, cpf, createNumberAccount } = req.body
 
     if (await Client.findOne({ email })) {
       res.status(400).send({ message: 'erro autenticar o email! D:' })
@@ -12,9 +12,15 @@ exports.client = async (req, res) => {
       res.status(400).send({ message: 'erro ao autenticar o CPF! D:' })
     }
 
+    // Lógica para não cria numeros duplicas
+
+    if (await Client.findOne({ createNumberAccount })) {
+      res.status(500).send({ message: 'Ouve um pequeno erro no nosso servidor' })
+    }
+
     const client = await Client.create(req.body)
 
-    res.json(client).send({ message: 'User Criado com Sucesso! :D' })
+    res.send({ client, message: 'User Criado com Sucesso! :D' }).end()
   } catch (err) {
     res.send(err)
   }
