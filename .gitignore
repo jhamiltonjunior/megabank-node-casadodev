@@ -8,6 +8,9 @@ dist
 frontend
 view
 
+# secrect API
+src/config/secret.json
+
 # txt
 gcloud.txt
 
