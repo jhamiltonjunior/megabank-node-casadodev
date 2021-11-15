@@ -1,6 +1,7 @@
 const express = require('express')
 // const cors = require('cors')
-const router = require('./interface/routes/clientRoute')
+const clientRouter = require('./interface/routes/clientRoute')
+const accountRouter = require('./interface/routes/accountRoute')
 
 const app = express()
 
@@ -8,7 +9,8 @@ const app = express()
 
 app.use(express.json())
 
-app.use(router)
+app.use(clientRouter)
+app.use(accountRouter)
 
 app.listen(5000, () => {
   console.log('OK!', Date())

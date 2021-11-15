@@ -3,7 +3,7 @@ content-type: application/json
 
 {
   "name": "hamilton",
-  "email": "hamilton@code.com.br",
-  "cpf": 1,
+  "email": "h@code.com.br",
+  "cpf": 9,
   "password": "123456"
 }

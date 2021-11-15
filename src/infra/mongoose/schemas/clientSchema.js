@@ -33,7 +33,8 @@ const ClientSchema = new Schema({
   createNumberAccount: {
     type: String,
     default: generateNumber(),
-    required: true
+    required: true,
+    unique: true
   }
 })
 

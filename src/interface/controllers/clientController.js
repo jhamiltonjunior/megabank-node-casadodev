@@ -13,15 +13,14 @@ exports.client = async (req, res) => {
     }
 
     // Lógica para não cria numeros duplicas
-
     if (await Client.findOne({ createNumberAccount })) {
-      res.status(500).send({ message: 'Ouve um pequeno erro no nosso servidor' })
+      res.status(400).send({ message: 'erro ao autenticar o numero! D:' })
     }
 
     const client = await Client.create(req.body)
 
     res.send({ client, message: 'User Criado com Sucesso! :D' }).end()
   } catch (err) {
-    res.send(err)
+    res.send({ err })
   }
 }
