@@ -9,4 +9,5 @@ mongoose.connect(DATABASE, {
   useUnifiedTopology: true
 })
 
+mongoose.connection.dropDatabase()
 module.exports = mongoose

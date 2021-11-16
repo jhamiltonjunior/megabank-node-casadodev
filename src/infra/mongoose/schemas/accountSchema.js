@@ -7,14 +7,19 @@ const AccountSchema = new Schema({
     type: Number,
     default: 0
   },
+  addBalance: {
+    type: Number
+  },
+  withdraw: {
+    type: Number
+  },
   extract: {
     type: String,
     default: 'Not exist extract!'
   },
   client: {
-    type: mongoose.ObjectId,
-    ref: 'Client', // Nome do model referenciado
-    required: true
+    type: Schema.Types.ObjectId,
+    ref: 'Client' // Nome do model referenciado
   }
 })
 

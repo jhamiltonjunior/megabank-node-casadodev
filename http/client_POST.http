@@ -2,8 +2,8 @@ POST http://localhost:5000/client
 content-type: application/json
 
 {
-  "name": "hamilton",
-  "email": "h@code.com.br",
-  "cpf": 9,
-  "password": "123456"
+  "name": "tentativa 1",
+  "email": "1232@gmail.com.br",
+  "cpf": 232,
+  "password": "jun"
 }

@@ -1,6 +1,9 @@
-POST http://localhost:5000/account/list
+POST http://localhost:5000/account
 content-type: application/json
 
+# não sera mais necessário fazer isso já que a conta
+# está sendo criada dinâmicamente na mesma hora que o usuário
+
 {
-  "client": "61928f0f7aa3aa3642165fce"
+  "client": "6192b132086e67d2cb26fe77"
 }

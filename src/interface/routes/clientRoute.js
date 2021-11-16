@@ -2,8 +2,11 @@ const express = require('express')
 
 const router = express.Router()
 
-const clientController = require('../controllers/clientController')
+const { client, list } = require('../controllers/clientController')
+// const { account } = require('../controllers/accountController')
 
-router.post('/client', clientController.client)
+// account é adicionado no final para que ele
+router.post('/client', client)
+router.get('/client/list', list)
 
 module.exports = router
