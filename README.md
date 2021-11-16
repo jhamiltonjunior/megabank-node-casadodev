@@ -8,13 +8,27 @@
 - [ ] (Todos) Arquivos postman ou insomnia
 - [ ] (Toda) Documentação README.md
 - Tecnologias que foram usadas
+  - NodeJS
+  - Express
+  - MongoDB
+  - Mongoose
 - Depêndencias
+  - dotenv
+  - express
+  - jsonwebtoken
+  - mongoose
+  - EsLint
+  - Nodemon
+  - eslint-config-standard
+  - eslint-plugin-node
+  - eslint-plugin-promise
+
 - Orientação para levantar o ambiente da aplicação
 
 #
 
 ## Requisitos funcionais
-
+- [X] Criação do Cliente e Conta
 - [ ] Depósito
 - [ ] Saque
 - [ ] Transferências entre contas
@@ -23,8 +37,9 @@
 - [ ] Geração de Extrato
 
 # Mongo.connect
+## Conectar-se ao MongoDB
 
-Para você conseguir se conectar com o mongo basta apenas criar um arquivo *.env* na raiz do projeto
+### Para você conseguir se conectar com o mongo basta apenas criar um arquivo *.env* na raiz do projeto
 
 ## Dentro do arquivo insira o linha:
 ```
@@ -40,3 +55,7 @@ Caso não tenha, e não queira instalar você pode usar o [Mongo Atlas](https://
 ### [Install MongoDB in Arch Linux](https://wiki.archlinux.org/title/MongoDB)
 
 #### caso *instale* o mongo e não consiga acessar o shell do mesmo, reinicie o seu computador isso funcionou comigo.
+
+# Para conseguir Acessar os arquivos http e usa-los, baixe a extenção REST Client do VSCode
+
+![Essa Extenção aí hehehehe!](img/REST-Client.png)

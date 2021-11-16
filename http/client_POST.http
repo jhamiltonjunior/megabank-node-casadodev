@@ -1,9 +1,0 @@
-POST http://localhost:5000/client
-content-type: application/json
-
-{
-  "name": "tentativa 1",
-  "email": "1232@gmail.com.br",
-  "cpf": 232,
-  "password": "jun"
-}

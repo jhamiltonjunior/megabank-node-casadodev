@@ -5,8 +5,8 @@ const Account = require('../../infra/mongoose/schemas/accountSchema')
 exports.account = async (req, res) => {
   try {
     // isso não é mais necessário
-    // já que account é criada dinâmicamente juntamente com o
-    // client
+    // já que account é criada dinâmicamente
+    // juntamente com o client
     const account = await Account.create(req.body)
 
     res.send({ account })

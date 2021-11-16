@@ -1,5 +1,7 @@
 const mongoose = require('../mongoose')
-// const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
+
+const { generateNumber } = require('./utils/createNumberAccount')
 
 const { Schema, model } = mongoose
 
@@ -25,24 +27,25 @@ const ClientSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
-    select: false
+    required: true
+    // select: false
   },
   createNumberAccount: {
     type: String,
+    default: generateNumber(),
     required: true,
     unique: true
   }
 })
 
 // pre'('save') = antes de salvar
-// ClientSchema.pre('save', function (next) {
-//   const hash = bcrypt.hash(this.password, 10)
+ClientSchema.pre('save', async function (next) {
+  const hash = await bcrypt.hash(this.password, 10)
 
-//   this.password = hash
+  this.password = hash
 
-//   next()
-// })
+  next()
+})
 
 const Client = model('Client', ClientSchema)
 

@@ -7,6 +7,7 @@
 dist
 frontend
 view
+package.mais-frontend.txt
 
 # secrect API
 src/config/secret.json

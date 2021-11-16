@@ -12,6 +12,8 @@ app.use(express.json())
 app.use(clientRouter)
 app.use(accountRouter)
 
+const now = new Date()
+
 app.listen(5000, () => {
-  console.log('OK!', Date())
+  console.log('OK!', `${now.getHours()}:${now.getMinutes()}`)
 })
