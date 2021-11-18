@@ -19,7 +19,7 @@
   - mongoose
   - EsLint
   - Nodemon
-  - eslint-config-standard
+  - eslint-config-google
   - eslint-plugin-node
   - eslint-plugin-promise
 

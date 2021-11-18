@@ -12,4 +12,4 @@ router.post('/client/register', clientRegister)
 router.post('/client/auth', clientAuth)
 router.get('/client/list', list)
 
-module.exports = router
+module.exports = app => app.use(router)

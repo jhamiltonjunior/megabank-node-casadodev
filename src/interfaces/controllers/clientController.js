@@ -8,7 +8,7 @@ const Account = require('../../infra/mongoose/schemas/accountSchema')
 const generateToken = (params = {}) => {
   const ONE_DAY = 86400
 
-  const privateKey = process.env.privateKey
+  const privateKey = process.env.PRIVATEKEY
 
   const token = jwt.sign(params, privateKey, {
     expiresIn: ONE_DAY
@@ -46,7 +46,7 @@ exports.clientRegister = async (req, res) => {
 
     client.password = undefined
 
-    res.json({
+    res.status(201).json({
       createAccount,
       token: generateToken({ id: _id })
     })

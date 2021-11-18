@@ -16,13 +16,7 @@ exports.account = async (req, res) => {
 }
 
 exports.addBalance = async (req, res) => {
-  const { addBalance, balance } = req.body
-
-  const getBalance = await Account.findOne({ balance: balance })
-
-  const newBalance = await Account.updateOne({ balance: getBalance + addBalance })
-
-  res.json({ newBalance })
+  res.send({ message: 'Cheguei na Route!' })
 }
 
 exports.list = async (req, res) => {

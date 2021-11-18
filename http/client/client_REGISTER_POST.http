@@ -1,0 +1,9 @@
+POST http://localhost:5000/client/register
+content-type: application/json
+
+{
+  "name": "Hamilton",
+  "email": "hamilton@codado.com.br",
+  "cpf": 1234567891,
+  "password": "my password"
+}

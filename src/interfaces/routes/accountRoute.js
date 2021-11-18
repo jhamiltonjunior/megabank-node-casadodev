@@ -7,11 +7,11 @@ const {
   list
 } = require('../controllers/accountController')
 
-// const { authOnly } = require('../middlewares/authOnly')
+const { authOnly } = require('../middlewares/authOnly')
 
 router.post('/account', account)
-router.put('/account/add-balance', addBalance)
+router.put('/account/add-balance', authOnly, addBalance)
 router.get('/account/list', list)
 router.get('/account/list:id', list)
 
-module.exports = router
+module.exports = app => app.use(router)
