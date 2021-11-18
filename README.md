@@ -1,12 +1,12 @@
 # Esse projeto é um *desafio* de um Sistema de **Banco Digital** (Simplificado) onde eu vou desenvolve-lo e ganhar uma ***cadeira Gamer*** e uma ***Alexa***.
 
-## [Este projeto Online](34.95.186.221)
+## [Acesse este projeto Online](34.95.186.221)
 #
 
 ## Requisitos Não Funcionais
 
-- [ ] (Todos) Arquivos postman ou insomnia
-- [ ] (Toda) Documentação README.md
+- [ ] (Todos) Arquivos postman, insomnia, (no meu caso) HTTP
+- [ ] (Toda) Documentação [README.md](README.md)
 - Tecnologias que foram usadas
   - NodeJS
   - Express
@@ -29,6 +29,7 @@
 
 ## Requisitos funcionais
 - [X] Criação do Cliente e Conta
+- [X] Autenticação do Cliente
 - [ ] Depósito
 - [ ] Saque
 - [ ] Transferências entre contas
@@ -56,6 +57,6 @@ Caso não tenha, e não queira instalar você pode usar o [Mongo Atlas](https://
 
 #### caso *instale* o mongo e não consiga acessar o shell do mesmo, reinicie o seu computador isso funcionou comigo.
 
-# Para conseguir Acessar os arquivos http e usa-los, baixe a extenção REST Client do VSCode
+# Para conseguir Acessar os arquivos http e usa-los, baixe a extenção REST Client do VSCode (semelhante ao insomnia ou postman)
 
-![Essa Extenção aí hehehehe!](img/REST-Client.png)
+![Essa Extenção aí hehehehe!](images/REST-Client.png)

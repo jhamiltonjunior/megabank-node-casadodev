@@ -1,0 +1,6 @@
+PUT http://localhost:5000/account/add-balance
+content-type: application/json
+
+{
+  "addBalance": 1232
+}

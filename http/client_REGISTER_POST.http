@@ -3,7 +3,7 @@ content-type: application/json
 
 {
   "name": "tentativa 1",
-  "email": "1",
-  "cpf": 1,
+  "email": "12",
+  "cpf": 12,
   "password": "e"
 }

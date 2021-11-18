@@ -27,8 +27,8 @@ const ClientSchema = new Schema({
   },
   password: {
     type: String,
-    required: true
-    // select: false
+    required: true,
+    select: false
   },
   createNumberAccount: {
     type: String,
@@ -40,6 +40,8 @@ const ClientSchema = new Schema({
 
 // pre'('save') = antes de salvar
 ClientSchema.pre('save', async function (next) {
+  // o bcrypt retorna uma promise
+  // então async await nele
   const hash = await bcrypt.hash(this.password, 10)
 
   this.password = hash

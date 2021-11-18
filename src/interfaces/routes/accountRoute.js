@@ -1,9 +1,16 @@
 const express = require('express').Router
 const router = express()
 
-const { account, list } = require('../controllers/accountController')
+const {
+  account,
+  addBalance,
+  list
+} = require('../controllers/accountController')
+
+// const { authOnly } = require('../middlewares/authOnly')
 
 router.post('/account', account)
+router.put('/account/add-balance', addBalance)
 router.get('/account/list', list)
 router.get('/account/list:id', list)
 

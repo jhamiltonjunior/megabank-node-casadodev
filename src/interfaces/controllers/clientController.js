@@ -73,7 +73,7 @@ exports.clientAuth = async (req, res) => {
 
     client.password = undefined
 
-    res.json({
+    res.send({
       client,
       token: generateToken({ id: client._id })
     })
@@ -85,6 +85,8 @@ exports.clientAuth = async (req, res) => {
 exports.list = async (req, res) => {
   try {
     const list = await Client.find()
+
+    list.cpf = undefined
 
     res.send({ list }).end()
   } catch (err) {

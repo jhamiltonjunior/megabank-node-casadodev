@@ -1,7 +1,7 @@
 const express = require('express')
 // const cors = require('cors')
-const clientRouter = require('./interface/routes/clientRoute')
-const accountRouter = require('./interface/routes/accountRoute')
+// const clientRouter = require('./interfaces/routes/clientRoute')
+// const accountRouter = require('./interfaces/routes/accountRoute')
 
 const app = express()
 
@@ -9,11 +9,15 @@ const app = express()
 
 app.use(express.json())
 
-app.use(clientRouter)
-app.use(accountRouter)
+// app.use(clientRouter)
+// app.use(accountRouter)
+
+require('./interfaces/routes/index')(app)
 
 const now = new Date()
 
+const showHours = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
+
 app.listen(5000, () => {
-  console.log('OK!', `${now.getHours()}:${now.getMinutes()}`)
+  console.log('OK!', showHours)
 })
