@@ -5,6 +5,7 @@ const privateKey = process.env.PRIVATEKEY
 
 exports.authOnly = async (req, res, next) => {
   const authHeaders = req.headers.authorization
+  const client = req.client
 
   if (!authHeaders) {
     res.status(401).send({ message: 'No token provided' })
@@ -27,7 +28,7 @@ exports.authOnly = async (req, res, next) => {
       res.status(401).send({ message: 'erro ao autenticar o token!' })
     }
 
-    req.client._id = decoded.id
+    client._id = decoded.id
 
     return next()
   })

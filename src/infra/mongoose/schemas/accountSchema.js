@@ -7,12 +7,12 @@ const AccountSchema = new Schema({
     type: Number,
     default: 0
   },
-  addBalance: {
-    type: Number
-  },
-  withdraw: {
-    type: Number
-  },
+  // addBalance: {
+  //   type: Number
+  // },
+  // withdraw: {
+  //   type: Number
+  // },
   extract: {
     type: String,
     default: 'Not exist extract!'

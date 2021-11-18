@@ -1,3 +1,4 @@
 PUT http://localhost:5000/account/add-balance
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzcyNzMwNjUsImV4cCI6MTYzNzM1OTQ2NX0.K9aaLShThHIBFH9tEPw6ILZ3pScY623-UWpGaq4HbH0
+
