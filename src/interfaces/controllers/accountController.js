@@ -19,24 +19,54 @@ exports.account = async (req, res) => {
 // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzcyNzM2MzYsImV4cCI6MTYzNzM2MDAzNn0.0oMOu9fUIhAiiop-2Ubg1_8HHAPS-yzfUWfjDJZ-kD8
 exports.addBalance = async (req, res) => {
   try {
-    const { balance } = req.body
+    const { addBalance } = req.body
 
-    const getBalance = await Account.findOne(
-      req.params.id
-      // req.params.balance
-    )
+    const getBalance = await Account.findOne(req.params.id)
       .populate('client')
 
-    // const newBalance = balance + newBalance.balance
+    const newBalance = addBalance + getBalance.balance
 
-    // await Account.updateOne(
-    //   req.body.id,
-    //   { balance: newBalance }
-    // )
+    await Account.updateOne(
+      req.body.id,
+      { balance: newBalance }
+    )
 
-    res.send({ getBalance, message: 'Cheguei na Route!' })
+    res.send({ getBalance, message: `Você depositou R$${addBalance} reais` })
   } catch (err) {
     res.status(400).send({ error: err })
+  }
+}
+
+exports.removeBalance = async (req, res) => {
+  try {
+    const { withdraw } = req.body
+
+    const getBalance = await Account.findOne(req.params.id)
+      .populate('client')
+
+    if (getBalance.balance === 0) {
+      res.status(400).send({ message: 'Você não pode efetuar um saque, conta zerado!' })
+    }
+
+    if (getBalance.balance < withdraw) {
+      res.status(400).send({ message: 'Você não pode efetuar um saque desse tamanho!' })
+    }
+
+    const newBalance = getBalance.balance - withdraw
+
+    await Account.updateOne(
+      req.body.id,
+      { balance: newBalance }
+    )
+
+    res.send({
+      getBalance,
+      message: `
+    Você sacou R$${withdraw} reais ${getBalance.balance}
+    `
+    })
+  } catch (err) {
+    res.status(400).send({ erro: err })
   }
 }
 

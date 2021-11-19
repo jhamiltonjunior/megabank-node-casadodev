@@ -4,6 +4,7 @@ const router = express()
 const {
   account,
   addBalance,
+  removeBalance,
   list
 } = require('../controllers/accountController')
 
@@ -14,8 +15,9 @@ router.get('/account/list', list)
 router.get('/account/list:id', list)
 
 // abaixo dessa linha vai precisar de
-// autenticação jwt para usar a rota
-router.use(authOnly)
-router.put('/account/add-balance', addBalance)
+// autenticação jwt para acessar a rota
+// router.use()
+router.put('/account/add-balance', authOnly, addBalance)
+router.put('/account/remove-balance', authOnly, removeBalance)
 
 module.exports = app => app.use(router)

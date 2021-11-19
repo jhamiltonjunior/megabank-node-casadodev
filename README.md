@@ -1,7 +1,18 @@
 # Esse projeto é um *desafio* de um Sistema de **Banco Digital** (Simplificado) onde eu vou desenvolve-lo e ganhar uma ***cadeira Gamer*** e uma ***Alexa***.
 
 ## [Acesse este projeto Online](34.95.186.221)
-#
+
+# Orientações para você usar este projeto
+
+## Para baixar, abra o seu terminal e digite:
+```
+git clone https://github.com/jhamiltonjunior/megabank-node-casadodev.git
+```
+
+## para começar a usar você precisará da depêndecias, baixe usando o comando no seu terminal:
+```
+npm i
+```
 
 ## Requisitos Não Funcionais
 
@@ -30,7 +41,7 @@
 ## Requisitos funcionais
 - [X] Criação do Cliente e Conta
 - [X] Autenticação do Cliente
-- [ ] Depósito
+- [X] Depósito
 - [ ] Saque
 - [ ] Transferências entre contas
 - [ ] Pagamento de Despesas
@@ -60,3 +71,29 @@ Caso não tenha, e não queira instalar você pode usar o [Mongo Atlas](https://
 # Para conseguir Acessar os arquivos http e usa-los, baixe a extenção REST Client do VSCode (semelhante ao insomnia ou postman)
 
 ![Essa Extenção aí hehehehe!](images/REST-Client.png)
+
+# Dar update no Saldo
+
+## para fazer isso você precisa ir no arquivo *account_NEW_BALANCE_PUT.http* na pasta *http*
+
+Vocẽ irá precisar colocar um JSON nele, para dar update no saldo
+
+Mas antes de continuar você precisa ir no arquivo
+```
+client_AUTH_POST.http
+```
+Clique em Send Request copie o token de autentição e cole ao
+lado de Bearer **VAI PRECISAR DE UM ESPAÇO ENTRE ELES** no arquivo
+```
+account_ADD_BALANCE_PUT.http
+```
+
+# O JSON seria esse:
+```
+{
+  "balance": Number
+}
+```
+### Nota: eu não sei por qual motivo mas quando clico para inserir o saldo ele da o resultado como se o saldo ainda não tivesse sido inserido, mas no banco de dados ele foi inserido corretamente
+
+## A mesma lógica para remover saldo

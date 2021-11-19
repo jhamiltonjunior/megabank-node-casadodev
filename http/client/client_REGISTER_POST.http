@@ -3,7 +3,7 @@ content-type: application/json
 
 {
   "name": "Hamilton",
-  "email": "hamilton@codado.com",
-  "cpf": 123456789,
+  "email": "hamiltn@codado.com",
+  "cpf": 1234569,
   "password": "my password"
 }
