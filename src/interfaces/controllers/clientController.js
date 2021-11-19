@@ -1,21 +1,10 @@
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 const Client = require('../../infra/mongoose/schemas/clientSchema')
 const Account = require('../../infra/mongoose/schemas/accountSchema')
 
-const generateToken = (params = {}) => {
-  const ONE_DAY = 86400
-
-  const privateKey = process.env.PRIVATEKEY
-
-  const token = jwt.sign(params, privateKey, {
-    expiresIn: ONE_DAY
-  })
-
-  return token
-}
+const { generateToken } = require('./utils/generateToken')
 
 exports.clientRegister = async (req, res) => {
   try {
@@ -33,7 +22,9 @@ exports.clientRegister = async (req, res) => {
 
     // Lógica para não cria numeros duplicas
     if (await Client.findOne({ createNumberAccount })) {
-      res.status(400).send({ message: 'erro ao autenticar o numero da conta! D:' })
+      res
+        .status(400)
+        .send({ message: 'erro ao autenticar o numero da conta! D:' })
       return
     }
 
@@ -41,17 +32,19 @@ exports.clientRegister = async (req, res) => {
 
     // para já criar o Account e vincular ao client dinâmicamente
     const createAccount = await Account.create({
-      client: await Client.findOne(_id)
+      client: client.id,
     })
 
     client.password = undefined
 
     res.status(201).json({
       createAccount,
-      token: generateToken({ id: _id })
+      client,
+      Id: client.id,
+      token: generateToken({ id: _id }),
     })
   } catch (err) {
-    res.send({ err: err })
+    res.send({ err })
   }
 }
 
@@ -65,9 +58,9 @@ exports.clientAuth = async (req, res) => {
       res.status(400).send({ message: 'Vixe!!! Deu erro no email D:' })
     }
 
-    if (!await bcrypt.compare(password, client.password)) {
+    if (!(await bcrypt.compare(password, client.password))) {
       res.status(400).send({
-        message: 'Vixe!!! Deu erro na senha D:'
+        message: 'Vixe!!! Deu erro na senha D:',
       })
     }
 
@@ -75,7 +68,7 @@ exports.clientAuth = async (req, res) => {
 
     res.send({
       client,
-      token: generateToken({ id: client._id })
+      token: generateToken({ id: client._id }),
     })
   } catch (err) {
     res.send({ err: err })

@@ -6,7 +6,7 @@ module.exports = {
   entry: path.resolve(__dirname, 'frontend', 'js', 'main.js'),
   output: {
     path: path.resolve(__dirname, 'dist', 'js'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -16,12 +16,12 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      }
-    ]
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+    ],
   },
 
-  devtool: 'source-map'
+  devtool: 'source-map',
 }

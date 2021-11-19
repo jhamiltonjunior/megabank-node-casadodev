@@ -5,7 +5,11 @@ const { Schema, model } = mongoose
 const AccountSchema = new Schema({
   balance: {
     type: Number,
-    default: 0
+    default: 0,
+  },
+  paymentKey: {
+    type: Number,
+    required: true,
   },
   // addBalance: {
   //   type: Number
@@ -15,12 +19,12 @@ const AccountSchema = new Schema({
   // },
   extract: {
     type: String,
-    default: 'Not exist extract!'
+    default: 'Not exist extract!',
   },
   client: {
     type: Schema.Types.ObjectId,
-    ref: 'Client' // Nome do model referenciado
-  }
+    ref: 'Client', // Nome do model referenciado
+  },
 })
 
 const Account = model('Account', AccountSchema)

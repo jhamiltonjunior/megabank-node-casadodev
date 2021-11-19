@@ -5,7 +5,8 @@ const {
   account,
   addBalance,
   removeBalance,
-  list
+  sendMoney,
+  list,
 } = require('../controllers/accountController')
 
 const { authOnly } = require('../middlewares/authOnly')
@@ -19,5 +20,6 @@ router.get('/account/list:id', list)
 // router.use()
 router.put('/account/add-balance', authOnly, addBalance)
 router.put('/account/remove-balance', authOnly, removeBalance)
+router.put('/account/send-money', authOnly, sendMoney)
 
-module.exports = app => app.use(router)
+module.exports = (app) => app.use(router)

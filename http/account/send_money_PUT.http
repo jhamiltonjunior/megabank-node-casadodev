@@ -1,0 +1,8 @@
+PUT http://localhost:5000/account/send-money
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzczNjIyNjgsImV4cCI6MTYzNzQ0ODY2OH0.In3Jw8Ur3EKeMzY_VMZgL-r-vNobJVI3ZDbQOU50Cxc
+
+{
+  "email": "Hamilton",
+  "sendMoney": 12
+}

@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "start": "nodemon ./src/app.js --ignore node_modules --ignore dist",
+    "start": "nodemon --exec sucrase-node ./src/app.js --ignore node_modules --ignore dist",
     "dev": "webpack -w",
     "lint": "./node_modules/.bin/eslint ."
   },
@@ -13,19 +13,20 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "crypto": "^1.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.9"
+    "mongoose": "^6.0.9",
+    "sucrase": "^3.20.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.8",
-    "eslint": "^8.2.0",
-    "eslint-config-standard": "^16.0.3",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "nodemon": "^2.0.13"
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "nodemon": "^2.0.13",
+    "prettier": "^2.4.1"
   }
 }

@@ -2,6 +2,6 @@ POST http://localhost:5000/client/auth
 content-type: application/json
 
 {
-  "cpf": 123456789,
+  "cpf": 1,
   "password": "my password"
 }

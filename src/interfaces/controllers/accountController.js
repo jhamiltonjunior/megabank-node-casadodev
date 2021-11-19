@@ -15,21 +15,16 @@ exports.account = async (req, res) => {
     res.send({ err })
   }
 }
-// 6196cc6ac460d93c9b235aef
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzcyNzM2MzYsImV4cCI6MTYzNzM2MDAzNn0.0oMOu9fUIhAiiop-2Ubg1_8HHAPS-yzfUWfjDJZ-kD8
+
 exports.addBalance = async (req, res) => {
   try {
     const { addBalance } = req.body
 
-    const getBalance = await Account.findOne(req.params.id)
-      .populate('client')
+    const getBalance = await Account.findOne(req.params.id).populate('client')
 
     const newBalance = addBalance + getBalance.balance
 
-    await Account.updateOne(
-      req.body.id,
-      { balance: newBalance }
-    )
+    await Account.updateOne(req.body.id, { balance: newBalance })
 
     res.send({ getBalance, message: `Você depositou R$${addBalance} reais` })
   } catch (err) {
@@ -41,33 +36,49 @@ exports.removeBalance = async (req, res) => {
   try {
     const { withdraw } = req.body
 
-    const getBalance = await Account.findOne(req.params.id)
-      .populate('client')
+    const getBalance = await Account.findOne(req.params.id).populate('client')
 
     if (getBalance.balance === 0) {
-      res.status(400).send({ message: 'Você não pode efetuar um saque, conta zerado!' })
+      res
+        .status(403)
+        .send({ message: 'Você não pode efetuar um saque, conta zerada!' })
     }
 
     if (getBalance.balance < withdraw) {
-      res.status(400).send({ message: 'Você não pode efetuar um saque desse tamanho!' })
+      res
+        .status(403)
+        .send({ message: 'Você não pode efetuar um saque desse tamanho!' })
     }
 
     const newBalance = getBalance.balance - withdraw
 
-    await Account.updateOne(
-      req.body.id,
-      { balance: newBalance }
-    )
+    await Account.updateOne(req.body.id, { balance: newBalance })
 
     res.send({
       getBalance,
       message: `
     Você sacou R$${withdraw} reais ${getBalance.balance}
-    `
+    `,
     })
   } catch (err) {
     res.status(400).send({ erro: err })
   }
+}
+
+// vou enviar do jose para o hamilton
+
+exports.sendMoney = async (req, res) => {
+  const { email, paymentKey } = req.body
+
+  // , sendMoney
+
+  if (!(await Account.findOne({ email })))
+    res.status(400).send('Este email não existe!')
+
+  const account = await Account.findOne(req.params.id).populate('client')
+  const whatRepient = await Account.findOne({ paymentKey })
+
+  res.json({ account, whatRepient, balance: whatRepient.balance })
 }
 
 exports.list = async (req, res) => {

@@ -2,8 +2,8 @@ POST http://localhost:5000/client/register
 content-type: application/json
 
 {
-  "name": "Hamilton",
-  "email": "hamiltn@codado.com",
-  "cpf": 1234569,
+  "name": "Jose",
+  "email": "Jo2sse",
+  "cpf": 122,
   "password": "my password"
 }

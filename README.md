@@ -9,7 +9,7 @@
 git clone https://github.com/jhamiltonjunior/megabank-node-casadodev.git
 ```
 
-## para começar a usar você precisará da depêndecias, baixe usando o comando no seu terminal:
+## para começar a usar você precisará das depêndecias, baixe usando esse comando no seu terminal:
 ```
 npm i
 ```
@@ -24,15 +24,20 @@ npm i
   - MongoDB
   - Mongoose
 - Depêndencias
+  - bcryptjs
   - dotenv
   - express
   - jsonwebtoken
   - mongoose
   - EsLint
   - Nodemon
-  - eslint-config-google
+  - sucrase
+  - prettier
+  - eslint-plugin-import
   - eslint-plugin-node
   - eslint-plugin-promise
+  - eslint-config-prettier
+  - eslint-plugin-prettier
 
 - Orientação para levantar o ambiente da aplicação
 
@@ -42,10 +47,10 @@ npm i
 - [X] Criação do Cliente e Conta
 - [X] Autenticação do Cliente
 - [X] Depósito
-- [ ] Saque
+- [X] Saque
+- [X] Consulta de Saldo
 - [ ] Transferências entre contas
 - [ ] Pagamento de Despesas
-- [ ] Consulta de Saldo
 - [ ] Geração de Extrato
 
 # Mongo.connect

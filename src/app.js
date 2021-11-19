@@ -1,4 +1,4 @@
-const express = require('express')
+import express, { json } from 'express'
 // const cors = require('cors')
 // const clientRouter = require('./interfaces/routes/clientRoute')
 // const accountRouter = require('./interfaces/routes/accountRoute')
@@ -7,7 +7,7 @@ const app = express()
 
 // app.use(cors())
 
-app.use(express.json())
+app.use(json())
 
 // app.use(clientRouter)
 // app.use(accountRouter)

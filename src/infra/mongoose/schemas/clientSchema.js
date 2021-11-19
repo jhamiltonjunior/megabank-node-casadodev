@@ -8,34 +8,38 @@ const { Schema, model } = mongoose
 const ClientSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   cpf: {
     type: Number,
     required: true,
-    unique: true
+    unique: true,
   },
   created: {
     type: Date,
     default: Date.now,
-    required: true
+    required: true,
   },
   password: {
     type: String,
     required: true,
-    select: false
+    select: false,
   },
   createNumberAccount: {
     type: String,
     default: generateNumber(),
     required: true,
-    unique: true
-  }
+    unique: true,
+  },
+  account: {
+    type: Schema.Types.ObjectId,
+    ref: 'Account',
+  },
 })
 
 // pre'('save') = antes de salvar
