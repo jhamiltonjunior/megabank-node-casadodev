@@ -1,0 +1,10 @@
+PUT http://localhost:5000/account/which-expense
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mzc1MDE4ODYsImV4cCI6MTYzNzU4ODI4Nn0.1BR924NgXtZauB9eWSRstn_0b0ol_jOh4jUJdJe1xCU
+
+
+
+{
+  "whichExpense": "Luz",
+  "quantity": 1
+}

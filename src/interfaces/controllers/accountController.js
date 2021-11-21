@@ -133,6 +133,31 @@ exports.sendMoney = async (req, res) => {
   })
 }
 
+exports.whichExpense = async (req, res) => {
+  const { whichExpense, quantity } = req.body
+
+  const account = await Account.findOne(req.params.id).populate('client')
+
+  if (account.balance < quantity) {
+    res
+      .status(403)
+      .send({
+        message: 'adicione dinheiro para poder fazer pagamento de despesas'
+      })
+  }
+
+  const paidSuccessfully = `Você pagou a Conta de ${whichExpense} $R${quantity}`
+
+  const newBalance = account.balance - quantity
+
+  await Account.updateOne(req.params.id, {
+    balance: newBalance,
+    extract: [now, paidSuccessfully, '.', account.extract]
+  })
+
+  res.send({ account: account })
+}
+
 exports.generateExtract = async (req, res) => {
   const fs = require('fs')
   const path = require('path')

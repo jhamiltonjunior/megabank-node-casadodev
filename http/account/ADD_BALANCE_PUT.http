@@ -9,5 +9,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mzc1MDE4O
 # lado de Bearer **VAI PRECISAR DE UM ESPAÇO ENTRE ELES**
 
 {
-  "addBalance": 500
+  "addBalance": 1000
 }
