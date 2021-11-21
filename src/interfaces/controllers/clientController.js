@@ -5,26 +5,31 @@ const Client = require('../../infra/mongoose/schemas/clientSchema')
 const Account = require('../../infra/mongoose/schemas/accountSchema')
 
 const { generateToken } = require('./utils/generateToken')
+const { paymentKey } = require('./utils/paymentKey')
+const { generateNumber } = require('./utils/createNumberAccount')
 
 exports.clientRegister = async (req, res) => {
   try {
-    const { _id, email, cpf, createNumberAccount } = req.body
+    const { _id, email, cpf, numberAccount } = req.body
 
     if (await Client.findOne({ email })) {
-      req.body = 0
       res.status(400).send({ message: 'erro autenticar o email! D:' })
     }
 
     if (await Client.findOne({ cpf })) {
-      req.body = 0
       res.status(400).send({ message: 'erro ao autenticar o CPF! D:' })
     }
 
     // Lógica para não cria numeros duplicas
-    if (await Client.findOne({ createNumberAccount })) {
+    if (await Account.findOne({ numberAccount })) {
       res
         .status(400)
         .send({ message: 'erro ao autenticar o numero da conta! D:' })
+      return
+    }
+
+    if (await Account.findOne({ paymentKey })) {
+      res.status(400).send({ message: 'erro ao autenticar a chave Pix! D:' })
       return
     }
 
@@ -33,6 +38,8 @@ exports.clientRegister = async (req, res) => {
     // para já criar o Account e vincular ao client dinâmicamente
     const createAccount = await Account.create({
       client: client.id,
+      paymentKey: paymentKey(),
+      numberAccount: generateNumber(),
     })
 
     client.password = undefined

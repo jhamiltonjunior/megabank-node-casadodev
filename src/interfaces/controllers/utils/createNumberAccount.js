@@ -1,10 +1,10 @@
-const generateNumber = (min = 1000, max = 9999) => {
+exports.generateNumber = (min = 1000, max = 9999) => {
   const number = []
 
   let index = 0
 
   for (index; index < 4; index++) {
-    const randNumber = Math.floor((Math.random() * max) + min)
+    const randNumber = Math.floor(Math.random() * max + min)
 
     number.push(randNumber)
   }
@@ -13,5 +13,3 @@ const generateNumber = (min = 1000, max = 9999) => {
 
   return numberCreated
 }
-
-module.exports = { generateNumber }

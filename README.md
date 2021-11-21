@@ -49,7 +49,7 @@ npm i
 - [X] Depósito
 - [X] Saque
 - [X] Consulta de Saldo
-- [ ] Transferências entre contas
+- [X] Transferências entre contas
 - [ ] Pagamento de Despesas
 - [ ] Geração de Extrato
 

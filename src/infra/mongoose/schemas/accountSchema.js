@@ -8,15 +8,15 @@ const AccountSchema = new Schema({
     default: 0,
   },
   paymentKey: {
-    type: Number,
+    type: String,
     required: true,
+    unique: true,
   },
-  // addBalance: {
-  //   type: Number
-  // },
-  // withdraw: {
-  //   type: Number
-  // },
+  numberAccount: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   extract: {
     type: String,
     default: 'Not exist extract!',

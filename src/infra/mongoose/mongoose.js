@@ -6,7 +6,7 @@ const DATABASE = process.env.CONNECTIONDB
 
 mongoose.connect(DATABASE, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 })
 
 // mongoose.connection.dropDatabase()

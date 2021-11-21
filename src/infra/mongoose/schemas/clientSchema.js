@@ -1,8 +1,6 @@
 const mongoose = require('../mongoose')
 const bcrypt = require('bcryptjs')
 
-const { generateNumber } = require('./utils/createNumberAccount')
-
 const { Schema, model } = mongoose
 
 const ClientSchema = new Schema({
@@ -29,12 +27,6 @@ const ClientSchema = new Schema({
     type: String,
     required: true,
     select: false,
-  },
-  createNumberAccount: {
-    type: String,
-    default: generateNumber(),
-    required: true,
-    unique: true,
   },
   account: {
     type: Schema.Types.ObjectId,

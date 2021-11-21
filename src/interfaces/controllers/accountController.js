@@ -1,4 +1,4 @@
-// const Client = require('../../infra/mongoose/schemas/clientSchema')
+const Client = require('../../infra/mongoose/schemas/clientSchema')
 const Account = require('../../infra/mongoose/schemas/accountSchema')
 
 // Here I join client with the account
@@ -65,20 +65,55 @@ exports.removeBalance = async (req, res) => {
   }
 }
 
-// vou enviar do jose para o hamilton
+// vou enviar do Hamilton para o Jose
 
 exports.sendMoney = async (req, res) => {
-  const { email, paymentKey } = req.body
+  const { email, paymentKey, quantyti } = req.body
 
-  // , sendMoney
+  const client = await Client.findOne({ email })
+  const repient = await Account.findOne({ paymentKey })
 
-  if (!(await Account.findOne({ email })))
-    res.status(400).send('Este email não existe!')
+  if (!client) {
+    res.status(400).send({ message: 'Este email não existe! D:' })
+  }
+
+  if (!repient) {
+    res.status(400).send({ message: 'Chave incorreta! D:' })
+  }
 
   const account = await Account.findOne(req.params.id).populate('client')
-  const whatRepient = await Account.findOne({ paymentKey })
 
-  res.json({ account, whatRepient, balance: whatRepient.balance })
+  if (account.balance === 0) {
+    res
+      .status(403)
+      .send({ message: 'Você não pode enviar dinheiro, conta zerada!' })
+  }
+
+  if (account.balance < quantyti) {
+    res.status(403).send({
+      message: 'Você não pode enviar essa quantia, escolha um valor menor',
+    })
+  }
+
+  if (quantyti === 0) {
+    res.status(403).send({
+      message: 'Envie pelo menos R$0,1',
+    })
+  }
+
+  const newBalance = account.balance - quantyti
+  const newRepientBalance = repient.balance + quantyti
+
+  await Account.updateOne(req.params.id, { balance: newBalance })
+  await Account.updateOne({ _id: repient.id }, { balance: newRepientBalance })
+
+  const sendWithSuccess = `Você enviou R$${quantyti} para ${client.name}`
+
+  res.json({
+    account: account,
+    sendWithSuccess,
+    repient,
+  })
 }
 
 exports.list = async (req, res) => {

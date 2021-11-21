@@ -1,6 +1,6 @@
 PUT http://localhost:5000/account/add-balance
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzczNjIyNjgsImV4cCI6MTYzNzQ0ODY2OH0.In3Jw8Ur3EKeMzY_VMZgL-r-vNobJVI3ZDbQOU50Cxc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mzc1MDE4ODYsImV4cCI6MTYzNzU4ODI4Nn0.1BR924NgXtZauB9eWSRstn_0b0ol_jOh4jUJdJe1xCU
 
 # Vocẽ irá precisar colocar um JSON aqui para dar update no saldo
 
@@ -9,5 +9,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzczNjIyN
 # lado de Bearer **VAI PRECISAR DE UM ESPAÇO ENTRE ELES**
 
 {
-  "addBalance": 50
+  "addBalance": 5000
 }
