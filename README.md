@@ -9,10 +9,64 @@
 git clone https://github.com/jhamiltonjunior/megabank-node-casadodev.git
 ```
 
-## para começar a usar você precisará das depêndecias, baixe usando esse comando no seu terminal:
+## Para começar a usar você precisará das depêndecias, baixe usando esse comando no seu terminal:
 ```
 npm i
 ```
+
+## E então rode o servidor
+```
+npm start
+```
+ 
+# Para conseguir Acessar os arquivos .http e usa-los, baixe a extenção REST Client do VSCode (semelhante ao insomnia ou postman)
+
+![Essa Extenção!](images/REST-Client.png)
+
+## Para criar conta consultar, saldo e mais, veja os arquivos .http que estão na pasta http
+![files http](images/files-http.png)
+
+## Antes de tudo você vai precisar criar ou autenticar um usuário
+
+### Você pode fazer isso usando um dos arquivos abaixos
+
+Eles estão dentro da pasta http/client
+
+![register or auth client](images/register-or-auth.png)
+
+# Se tem authOnly na rota você vai precisar do token de autenticação
+
+![auth Only](images/auth-only.png)
+
+Lembra que eu disso um pouco acima que voĉe precisaria autenticar um user ou criar um?
+Então, foi exatamente por isso que eu disse isso.
+
+## Quando você registrar um novo user você terá um novo token
+(Ele vai expirar em 1 Dia, depois disso autentique o usuário que você criou para ter um novo token)
+
+![mytoken](images/my-token.png)
+
+## Para sacar, por exemplo, cole o seu token no authorization
+cole com um espaço ao lado direito de Bearer
+
+![authorization](images/req-headers-authorization.png)
+
+### repita o mesmo procedimento de colar o token nas outras rotas por no max 1 dia
+Depois disso é como eu disse acima, gere um novo token.
+
+# Easter Eggs
+
+### Quando você da um GET nessa rota:
+```
+http://localhost:5000/account/view-extract
+```
+### É gerado um arquivo .pdf contendo todo o estrato do usuário
+Na frente aparece o email do usuário (Hamilton) e o resto é padrão
+faço isso porque se outro usuario com o mesmo nome ao mesmo tempo gerar um extrato ele seria substituido, mas como o email é unico isso não vai acontecer
+
+(na pasta src/interfaces/controllers/temp)
+
+![extract](images/extract.pdf.png)
 
 ## Requisitos Não Funcionais
 
@@ -33,6 +87,7 @@ npm i
   - Nodemon
   - sucrase
   - prettier
+  - eslint-config-standard
   - eslint-plugin-import
   - eslint-plugin-node
   - eslint-plugin-promise
@@ -50,7 +105,7 @@ npm i
 - [X] Saque
 - [X] Consulta de Saldo
 - [X] Transferências entre contas
-- [ ] Geração de Extrato
+- [X] Geração de Extrato
 - [ ] Pagamento de Despesas
 
 # Mongo.connect
@@ -72,10 +127,6 @@ Caso não tenha, e não queira instalar você pode usar o [Mongo Atlas](https://
 ### [Install MongoDB in Arch Linux](https://wiki.archlinux.org/title/MongoDB)
 
 #### caso *instale* o mongo e não consiga acessar o shell do mesmo, reinicie o seu computador isso funcionou comigo.
-
-# Para conseguir Acessar os arquivos http e usa-los, baixe a extenção REST Client do VSCode (semelhante ao insomnia ou postman)
-
-![Essa Extenção aí hehehehe!](images/REST-Client.png)
 
 # Dar update no Saldo
 

@@ -29,7 +29,8 @@ exports.addBalance = async (req, res) => {
 
     await Account.updateOne(req.body.id, {
       balance: newBalance,
-      extract: [now, addedBalance, account.extract],
+      // , '.' não se assuste com ele é para que fs eu faça o replace('.', '\n')
+      extract: [now, addedBalance, '.', account.extract]
     })
 
     res.send({ account })
@@ -62,7 +63,7 @@ exports.removeBalance = async (req, res) => {
 
     await Account.updateOne(req.body.id, {
       balance: newBalance,
-      extract: [now, withdrawSuccess, account.extract],
+      extract: [now, withdrawSuccess, '.', account.extract]
     })
 
     res.send({ account })
@@ -97,13 +98,13 @@ exports.sendMoney = async (req, res) => {
 
   if (account.balance < quantyti) {
     res.status(403).send({
-      message: 'Você não pode enviar essa quantia, escolha um valor menor',
+      message: 'Você não pode enviar essa quantia, escolha um valor menor'
     })
   }
 
   if (quantyti === 0) {
     res.status(403).send({
-      message: 'Envie pelo menos R$0,1',
+      message: 'Envie pelo menos R$0,1'
     })
   }
 
@@ -115,21 +116,63 @@ exports.sendMoney = async (req, res) => {
 
   await Account.updateOne(req.params.id, {
     balance: newBalance,
-    extract: [now, sendWithSuccess, account.extract],
+    extract: [now, sendWithSuccess, '.', account.extract]
   })
   await Account.updateOne(
     { _id: repient.id },
     {
       balance: newRepientBalance,
       /* repient.extract para que eu posso ter todos os estratos anteriores */
-      extract: [now, recipientExtract, repient.extract],
+      extract: [now, recipientExtract, '.', repient.extract]
     }
   )
 
   res.json({
     account,
-    repient,
+    repient
   })
+}
+
+exports.generateExtract = async (req, res) => {
+  const fs = require('fs')
+  const path = require('path')
+
+  const account = await Account.findOne(req.params.id).populate('client')
+
+  const extractString = String(account.extract)
+  const extract = extractString
+    // formatando para deixar o texto mais legivel
+    .replaceAll('.', '\n \n')
+    .replaceAll(',V', ' v')
+    .replaceAll(',', '')
+    .replaceAll('s,', 's')
+
+  fs.writeFile(path.resolve(
+    __dirname, 'temp', `${account.client.email}-your-extract.pdf`
+  ),
+  extract,
+  err => {
+    if (err) return console.log(err)
+  })
+
+  // depois que o usuario fizer o download, esse codigo poderia ser executado
+  // fs.unlink(path.resolve(
+  //   __dirname, 'temp', `${account.client.email}-your-extract.pdf`
+  // ),
+  // err => {
+  //   if (err) return console.log(err)
+  // })
+
+  res
+    // this code is for when have frontend
+    // não sei se vai funcionar corretamente
+    // .download(path.resolve(
+    //   __dirname, 'temp', `${account.client.name}-your-extract.pdf`
+    // ))
+    .send({
+      yourExtract: account.extract,
+      message: 'Click nesse link para baixar o extrato em PDF'
+    })
 }
 
 exports.list = async (req, res) => {

@@ -2,9 +2,10 @@ PUT http://localhost:5000/account/remove-balance
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mzc1MDE4ODYsImV4cCI6MTYzNzU4ODI4Nn0.1BR924NgXtZauB9eWSRstn_0b0ol_jOh4jUJdJe1xCU
 
+# Essa rota é para sacar
 # Você irá precisar colocar um JSON aqui para dar update no saldo
 
-# Mas antes de continuar você precisa ir no arquivo client_AUTH_POST.http
+# Mas antes de continuar você precisa ir no arquivo client/REGISTER_POST.http
 # Clique em Send Request copie o token e cole ao
 # lado de Bearer **VAI PRECISAR DE UM ESPAÇO ENTRE ELES**
 

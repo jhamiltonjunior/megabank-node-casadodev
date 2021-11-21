@@ -2,8 +2,8 @@ POST http://localhost:5000/client/register
 content-type: application/json
 
 {
-  "name": "Jose",
-  "email": "Jose",
-  "cpf": 1,
-  "password": "my password"
+  "name": "EXEMPLE USER",
+  "email": "EXEMPLE USER",
+  "cpf": 123,
+  "password": "EXEMPLE PASS"
 }
