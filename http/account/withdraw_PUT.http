@@ -1,6 +1,6 @@
 PUT http://localhost:5000/account/remove-balance
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzcyNzMwNjUsImV4cCI6MTYzNzM1OTQ2NX0.K9aaLShThHIBFH9tEPw6ILZ3pScY623-UWpGaq4HbH0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Mzc1MDE4ODYsImV4cCI6MTYzNzU4ODI4Nn0.1BR924NgXtZauB9eWSRstn_0b0ol_jOh4jUJdJe1xCU
 
 # Você irá precisar colocar um JSON aqui para dar update no saldo
 

@@ -50,8 +50,8 @@ npm i
 - [X] Saque
 - [X] Consulta de Saldo
 - [X] Transferências entre contas
-- [ ] Pagamento de Despesas
 - [ ] Geração de Extrato
+- [ ] Pagamento de Despesas
 
 # Mongo.connect
 ## Conectar-se ao MongoDB

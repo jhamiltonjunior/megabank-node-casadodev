@@ -1,8 +1,9 @@
 const Client = require('../../infra/mongoose/schemas/clientSchema')
 const Account = require('../../infra/mongoose/schemas/accountSchema')
 
-// Here I join client with the account
+const { now } = require('../../utils/date')
 
+// Here I join client with the account
 exports.account = async (req, res) => {
   try {
     // isso não é mais necessário
@@ -20,13 +21,18 @@ exports.addBalance = async (req, res) => {
   try {
     const { addBalance } = req.body
 
-    const getBalance = await Account.findOne(req.params.id).populate('client')
+    const account = await Account.findOne(req.params.id).populate('client')
 
-    const newBalance = addBalance + getBalance.balance
+    const newBalance = addBalance + account.balance
 
-    await Account.updateOne(req.body.id, { balance: newBalance })
+    const addedBalance = `Você depositou R$${addBalance} reais`
 
-    res.send({ getBalance, message: `Você depositou R$${addBalance} reais` })
+    await Account.updateOne(req.body.id, {
+      balance: newBalance,
+      extract: [now, addedBalance, account.extract],
+    })
+
+    res.send({ account })
   } catch (err) {
     res.status(400).send({ error: err })
   }
@@ -36,30 +42,30 @@ exports.removeBalance = async (req, res) => {
   try {
     const { withdraw } = req.body
 
-    const getBalance = await Account.findOne(req.params.id).populate('client')
+    const account = await Account.findOne(req.params.id).populate('client')
 
-    if (getBalance.balance === 0) {
+    if (account.balance === 0) {
       res
         .status(403)
         .send({ message: 'Você não pode efetuar um saque, conta zerada!' })
     }
 
-    if (getBalance.balance < withdraw) {
+    if (account.balance < withdraw) {
       res
         .status(403)
         .send({ message: 'Você não pode efetuar um saque desse tamanho!' })
     }
 
-    const newBalance = getBalance.balance - withdraw
+    const newBalance = account.balance - withdraw
 
-    await Account.updateOne(req.body.id, { balance: newBalance })
+    const withdrawSuccess = `Você sacou R$${withdraw} saldo atual ${account.balance}`
 
-    res.send({
-      getBalance,
-      message: `
-    Você sacou R$${withdraw} reais ${getBalance.balance}
-    `,
+    await Account.updateOne(req.body.id, {
+      balance: newBalance,
+      extract: [now, withdrawSuccess, account.extract],
     })
+
+    res.send({ account })
   } catch (err) {
     res.status(400).send({ erro: err })
   }
@@ -101,17 +107,27 @@ exports.sendMoney = async (req, res) => {
     })
   }
 
-  const newBalance = account.balance - quantyti
-  const newRepientBalance = repient.balance + quantyti
-
-  await Account.updateOne(req.params.id, { balance: newBalance })
-  await Account.updateOne({ _id: repient.id }, { balance: newRepientBalance })
+  const newBalance = (account.balance - quantyti).toFixed(2)
+  const newRepientBalance = (repient.balance + quantyti).toFixed(2)
 
   const sendWithSuccess = `Você enviou R$${quantyti} para ${client.name}`
+  const recipientExtract = `Você recebeu R$${quantyti} de ${account.client.name}`
+
+  await Account.updateOne(req.params.id, {
+    balance: newBalance,
+    extract: [now, sendWithSuccess, account.extract],
+  })
+  await Account.updateOne(
+    { _id: repient.id },
+    {
+      balance: newRepientBalance,
+      /* repient.extract para que eu posso ter todos os estratos anteriores */
+      extract: [now, recipientExtract, repient.extract],
+    }
+  )
 
   res.json({
-    account: account,
-    sendWithSuccess,
+    account,
     repient,
   })
 }

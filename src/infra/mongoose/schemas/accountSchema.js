@@ -18,7 +18,7 @@ const AccountSchema = new Schema({
     unique: true,
   },
   extract: {
-    type: String,
+    type: Array,
     default: 'Not exist extract!',
   },
   client: {
