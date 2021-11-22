@@ -10,9 +10,6 @@ view
 package.mais-frontend.txt
 webpack.config.js
 
-# secrect API
-src/config/secret.json
-
 # txt
 gcloud.txt
 

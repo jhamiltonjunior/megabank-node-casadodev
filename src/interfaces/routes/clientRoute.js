@@ -5,7 +5,7 @@ const router = express.Router()
 const {
   clientRegister,
   clientAuth,
-  list,
+  list
 } = require('../controllers/clientController')
 
 router.post('/client/register', clientRegister)

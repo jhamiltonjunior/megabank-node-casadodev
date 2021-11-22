@@ -1,6 +1,9 @@
 # Esse projeto é um *desafio* de um Sistema de **Banco Digital** (Simplificado) onde eu vou desenvolve-lo e ganhar uma ***cadeira Gamer*** e uma ***Alexa***.
 
-## [Acesse este projeto Online](34.95.186.221)
+## [Acesse este projeto Online](34.95.222.85)
+Como o Google Cloud só me da 90 dias de acesso gratuito, é provável que essa aplicação saia do ar em breve, mas você ainda pode usa-la no seu computador
+
+### Esse app não tem um frontend pelo motivo de eu não ter muito tempo para desenvolve-la, durante o dia eu trabalho como zelador, então não tive muito tempo para cria-la
 
 # Orientações para você usar este projeto
 
@@ -77,12 +80,17 @@ faço isso porque se outro usuario com o mesmo nome ao mesmo tempo gerar um extr
   - Express
   - MongoDB
   - Mongoose
+
 - Depêndencias
   - bcryptjs
   - dotenv
   - express
   - jsonwebtoken
+  - cors
+  - ejs
   - mongoose
+
+- devDepêndencias
   - EsLint
   - Nodemon
   - sucrase
@@ -106,7 +114,7 @@ faço isso porque se outro usuario com o mesmo nome ao mesmo tempo gerar um extr
 - [X] Consulta de Saldo
 - [X] Transferências entre contas
 - [X] Geração de Extrato
-- [ ] Pagamento de Despesas
+- [X] Pagamento de Despesas
 
 # Mongo.connect
 ## Conectar-se ao MongoDB
