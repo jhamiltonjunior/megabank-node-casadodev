@@ -9,6 +9,7 @@ const app = express()
 app.set('views', path.resolve(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
+app.use(express.static(path.resolve(__dirname, 'frontend')))
 app.use(cors())
 app.use(express.json())
 
