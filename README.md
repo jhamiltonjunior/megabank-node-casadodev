@@ -3,7 +3,7 @@
 ## [Acesse este projeto Online](http://34.95.222.85)
 Como o Google Cloud só me da 90 dias de acesso gratuito, é provável que essa aplicação saia do ar em breve, mas você ainda pode usa-la no seu computador
 
-### Esse app não tem um frontend pelo motivo de eu não ter muito tempo para desenvolve-la, durante o dia eu trabalho como zelador, então não tive muito tempo para cria-la
+### Essa API não tem um frontend pelo motivo de eu não ter muito tempo para desenvolve-la, durante o dia eu trabalho como zelador, então não tive muito tempo para cria-la
 
 # Orientações para você usar este projeto
 
@@ -26,7 +26,7 @@ npm start
 
 ![Essa Extenção!](images/REST-Client.png)
 
-## Para criar conta consultar, saldo e mais, veja os arquivos .http que estão na pasta http
+## Para criar conta, consultar saldo e mais, veja os arquivos .http que estão na pasta http
 ![files http](images/files-http.png)
 
 ## Antes de tudo você vai precisar criar ou autenticar um usuário
@@ -41,11 +41,11 @@ Eles estão dentro da pasta http/client
 
 ![auth Only](images/auth-only.png)
 
-Lembra que eu disso um pouco acima que voĉe precisaria autenticar um user ou criar um?
+Lembra que eu disse um pouco acima que voĉe precisaria autenticar um user ou criar um?
 Então, foi exatamente por isso que eu disse isso.
 
 ## Quando você registrar um novo user você terá um novo token
-(Ele vai expirar em 1 Dia, depois disso autentique o usuário que você criou para ter um novo token)
+(Ele vai expirar em 1 hora, depois disso autentique o usuário que você criou para ter um novo token)
 
 ![mytoken](images/my-token.png)
 
@@ -54,7 +54,7 @@ cole com um espaço ao lado direito de Bearer
 
 ![authorization](images/req-headers-authorization.png)
 
-### repita o mesmo procedimento de colar o token nas outras rotas por no max 1 dia
+### repita o mesmo procedimento de colar o token nas outras rotas por no max 1 hora
 Depois disso é como eu disse acima, gere um novo token.
 
 # Easter Eggs
